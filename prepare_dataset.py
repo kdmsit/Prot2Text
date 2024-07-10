@@ -38,21 +38,21 @@ args = argParser.parse_args()
 
 
 # step 1: download the PDB files from AlphaFoldDB
-isExist = os.path.exists(os.path.join(args.data_save_path, args.split))
-if not isExist:
-    os.makedirs(os.path.join(args.data_save_path, args.split, 'pdb'))
-    os.makedirs(os.path.join(args.data_save_path, args.split, 'raw'))
-    os.makedirs(os.path.join(args.data_save_path, args.split, 'processed'))
-
-print('downloading the data:\n')
-
-df = pd.read_csv(args.csv_path)
-
-pdb_path = os.path.join(args.data_save_path, args.split, 'pdb')
-for prot in tqdm(set(df.AlphaFoldDB)):
-    if os.path.exists(os.path.join(pdb_path, 'AF-'+str(prot)+'-F1-model_v4.pdb')):
-        continue
-    download_alphafold_structure(uniprot_id=str(prot), out_dir=pdb_path)
+# isExist = os.path.exists(os.path.join(args.data_save_path, args.split))
+# if not isExist:
+#     os.makedirs(os.path.join(args.data_save_path, args.split, 'pdb'))
+#     os.makedirs(os.path.join(args.data_save_path, args.split, 'raw'))
+#     os.makedirs(os.path.join(args.data_save_path, args.split, 'processed'))
+#
+# print('downloading the data:\n')
+#
+# df = pd.read_csv(args.csv_path)
+#
+# pdb_path = os.path.join(args.data_save_path, args.split, 'pdb')
+# for prot in tqdm(set(df.AlphaFoldDB)):
+#     if os.path.exists(os.path.join(pdb_path, 'AF-'+str(prot)+'-F1-model_v4.pdb')):
+#         continue
+#     download_alphafold_structure(uniprot_id=str(prot), out_dir=pdb_path)
 
 # step 2: construct graphs from the pdb files
 print('constructing the graphs:\n')
