@@ -48,7 +48,7 @@ args = argParser.parse_args()
 #
 # df = pd.read_csv(args.csv_path)
 #
-# pdb_path = os.path.join(args.data_save_path, args.split, 'pdb')
+pdb_path = os.path.join(args.data_save_path, args.split, 'pdb')
 # for prot in tqdm(set(df.AlphaFoldDB)):
 #     if os.path.exists(os.path.join(pdb_path, 'AF-'+str(prot)+'-F1-model_v4.pdb')):
 #         continue
