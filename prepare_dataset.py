@@ -59,17 +59,10 @@ print('constructing the graphs:\n')
 if len(os.listdir(os.path.join(args.data_save_path, args.split, 'raw'))) == len(os.listdir(os.path.join(args.data_save_path, args.split, 'pdb'))):
     print('graphs already created')
 else:
-    config = {"node_metadata_functions": [amino_acid_one_hot, 
-                                        expasy_protein_scale,
-                                        meiler_embedding,
-                                        hydrogen_bond_acceptor, 
-                                        hydrogen_bond_donor
-                                        ],
-            "edge_construction_functions": [add_peptide_bonds,
-                                            add_hydrogen_bond_interactions,
-                                            partial(add_distance_threshold, 
-                                                    long_interaction_threshold=3, 
-                                                    threshold=10.),],
+    config = {"node_metadata_functions": [amino_acid_one_hot, expasy_protein_scale,meiler_embedding,
+                                        hydrogen_bond_acceptor, hydrogen_bond_donor],
+            "edge_construction_functions": [add_peptide_bonds,add_hydrogen_bond_interactions,
+                                            partial(add_distance_threshold,long_interaction_threshold=3, threshold=20.),],
             "graph_metadata_functions":[asa, phi, psi, secondary_structure, rsa],
             "dssp_config": DSSPConfig(),}
     config = ProteinGraphConfig(**config)
