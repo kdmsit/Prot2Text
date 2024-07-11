@@ -132,7 +132,7 @@ class PDB2Graph():
         # print(path_to_structure)
         # exit()
         g = self.create_pyg_graph(path_to_structure)
-        print(self.output_folder)
+        print("Output Files",self.output_folder)
         # Save the graph
         torch.save(g, os.path.join(self.output_folder, self.pdb2pathdata(pdb)))
 
