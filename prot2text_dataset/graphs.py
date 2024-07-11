@@ -740,11 +740,14 @@ def construct_graph(
         progress.advance(task3)
         task4 = progress.add_task("Constructing edges...", total=1)
         # Compute graph edges
-        g = compute_edges(
-            g,
-            funcs=config.edge_construction_functions,
-            get_contacts_config=None,
-        )
+
+        pdb_df = g.graph["pdb_df"]
+        # Remove duplicate rows with same node_id
+        pdb_df = pdb_df.drop_duplicates(subset="node_id")
+        pdb_df = pdb_df.reset_index(drop=True)
+        g.graph["pdb_df"] = pdb_df
+
+        g = compute_edges(g,funcs=config.edge_construction_functions,get_contacts_config=None)
         progress.advance(task4)
 
     # Annotate additional graph metadata
