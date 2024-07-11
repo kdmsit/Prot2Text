@@ -77,22 +77,22 @@ else:
               output_folder = os.path.join(args.data_save_path, args.split, 'raw'), 
               config=config, n_processors=32).process()
 
-# step 3: process the dataset
-esm_tokenizer = AutoTokenizer.from_pretrained(args.plm_model)
-tokenizer = AutoTokenizer.from_pretrained(args.decoder_model)
-SPECIAL_TOKEN = '<|graph_token|>'
-tokenizer.pad_token = tokenizer.eos_token
-tokenizer.pad_token = 50256
-tokenizer.add_tokens([SPECIAL_TOKEN])
-SPECIAL_TOKEN = '<|stop_token|>'
-tokenizer.add_tokens([SPECIAL_TOKEN])
-tokenizer.eos_token = '<|stop_token|>'
-tokenizer.eos_token_id = 50258
-tokenizer.bos_token_id = 50257
-
-dataset = Prot2TextDataset(root=args.data_save_path, 
-                          tokenizer=tokenizer, 
-                          file_path=args.csv_path, 
-                          block_size=256, 
-                          split=args.split, 
-                          esmtokenizer=esm_tokenizer)
+# # step 3: process the dataset
+# esm_tokenizer = AutoTokenizer.from_pretrained(args.plm_model)
+# tokenizer = AutoTokenizer.from_pretrained(args.decoder_model)
+# SPECIAL_TOKEN = '<|graph_token|>'
+# tokenizer.pad_token = tokenizer.eos_token
+# tokenizer.pad_token = 50256
+# tokenizer.add_tokens([SPECIAL_TOKEN])
+# SPECIAL_TOKEN = '<|stop_token|>'
+# tokenizer.add_tokens([SPECIAL_TOKEN])
+# tokenizer.eos_token = '<|stop_token|>'
+# tokenizer.eos_token_id = 50258
+# tokenizer.bos_token_id = 50257
+#
+# dataset = Prot2TextDataset(root=args.data_save_path,
+#                           tokenizer=tokenizer,
+#                           file_path=args.csv_path,
+#                           block_size=256,
+#                           split=args.split,
+#                           esmtokenizer=esm_tokenizer)
