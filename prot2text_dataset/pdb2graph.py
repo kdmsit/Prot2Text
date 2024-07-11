@@ -129,6 +129,8 @@ class PDB2Graph():
         path_to_structure = self.pdb2pathstructure(pdb)
 
         # Convert the structure into a graph
+        print(path_to_structure)
+        exit()
         g = self.create_pyg_graph(path_to_structure)
         # Save the graph
         torch.save(g, os.path.join(self.output_folder, self.pdb2pathdata(pdb)))
